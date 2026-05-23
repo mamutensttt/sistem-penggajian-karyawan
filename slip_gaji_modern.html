@@ -1,0 +1,111 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem 1rem}
+.header{text-align:center;margin-bottom:1.75rem}
+.logo-dot{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:inline-flex;align-items:center;justify-content:center;margin-bottom:.75rem}
+.logo-dot svg{width:20px;height:20px;fill:white}
+h1{font-size:17px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.period{font-size:12px;color:var(--color-text-secondary);background:var(--color-background-secondary);display:inline-block;padding:3px 10px;border-radius:20px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem;margin-bottom:1rem}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--color-text-tertiary);text-transform:uppercase;margin-bottom:.85rem}
+.field-row{display:flex;flex-direction:column;gap:5px;margin-bottom:1rem}
+.field-row:last-child{margin-bottom:0}
+.field-row label{font-size:13px;color:var(--color-text-secondary)}
+.field-row input{width:100%;height:38px;padding:0 12px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);font-size:14px;color:var(--color-text-primary);background:var(--color-background-secondary);outline:none;transition:border-color .15s}
+.field-row input:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.12)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:1rem 0}
+.total-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem .9rem;border-radius:var(--border-radius-md);background:var(--color-background-secondary)}
+.total-row span:first-child{font-size:13px;color:var(--color-text-secondary)}
+.total-row span:last-child{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.bersih-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between}
+.bersih-label{font-size:13px;font-weight:500;color:var(--color-text-secondary)}
+.bersih-val{font-size:22px;font-weight:500;color:#4f46e5}
+.captcha-box{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:.75rem 1rem;margin-bottom:.75rem;display:flex;align-items:center;justify-content:space-between}
+.captcha-text{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.refresh-btn{width:30px;height:30px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);background:var(--color-background-primary);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--color-text-secondary);font-size:16px;transition:background .15s}
+.refresh-btn:hover{background:var(--color-background-secondary)}
+.submit-btn{width:100%;height:44px;background:#4f46e5;color:white;border:none;border-radius:var(--border-radius-md);font-size:15px;font-weight:500;cursor:pointer;transition:opacity .15s, transform .1s}
+.submit-btn:hover{opacity:.9}
+.submit-btn:active{transform:scale(.99)}
+</style>
+
+<div class="wrap">
+  <div class="header">
+    <div class="logo-dot">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+    </div>
+    <h1>Slip Gaji Karyawan</h1>
+    <span class="period">25 November 2025 — 25 Desember 2025</span>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Data karyawan</div>
+    <div class="field-row"><label>Nama</label><input type="text" placeholder="Nama lengkap"></div>
+    <div class="field-row"><label>NIK</label><input type="text" placeholder="Nomor induk karyawan"></div>
+    <div class="field-row"><label>Jabatan</label><input type="text" placeholder="Jabatan"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="section-label">Penghasilan</div>
+      <div class="field-row"><label>Gaji pokok</label><input type="text" id="gajiPokok" placeholder="Rp 0" oninput="hitung()"></div>
+      <div class="field-row"><label>Lembur</label><input type="text" id="lembur" placeholder="Rp 0" oninput="hitung()"></div>
+      <div class="divider"></div>
+      <div class="total-row"><span>Total penghasilan</span><span id="totalPenghasilan">Rp 0</span></div>
+    </div>
+    <div class="card">
+      <div class="section-label">Potongan</div>
+      <div class="field-row"><label>Pinjaman karyawan</label><input type="text" id="pinjaman" placeholder="Rp 0" oninput="hitung()"></div>
+      <div style="margin-bottom:1rem"></div>
+      <div class="divider"></div>
+      <div class="total-row"><span>Total potongan</span><span id="totalPotongan">Rp 0</span></div>
+    </div>
+  </div>
+
+  <div class="bersih-card">
+    <div>
+      <div class="bersih-label">Gaji bersih</div>
+      <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:2px">Penghasilan − potongan</div>
+    </div>
+    <div class="bersih-val" id="gajiBersih">Rp 0</div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Verifikasi</div>
+    <div class="captcha-box">
+      <span class="captcha-text" id="captchaQ">Captcha: 7 × 6 = ?</span>
+      <button class="refresh-btn" onclick="genCaptcha()" title="Perbarui captcha">↺</button>
+    </div>
+    <div class="field-row"><input type="text" id="captchaAns" placeholder="Masukkan jawaban"></div>
+    <button class="submit-btn" onclick="submitForm()">Kirim</button>
+  </div>
+</div>
+
+<script>
+const fmt = n => 'Rp ' + Math.round(n).toLocaleString('id-ID');
+const parse = s => parseFloat(s.replace(/[^0-9.]/g,'')) || 0;
+function hitung(){
+  const p = parse(document.getElementById('gajiPokok').value);
+  const l = parse(document.getElementById('lembur').value);
+  const pot = parse(document.getElementById('pinjaman').value);
+  document.getElementById('totalPenghasilan').textContent = fmt(p+l);
+  document.getElementById('totalPotongan').textContent = fmt(pot);
+  document.getElementById('gajiBersih').textContent = fmt(p+l-pot);
+}
+let captchaA=42, captchaB=7;
+function genCaptcha(){
+  captchaA = Math.floor(Math.random()*9)+2;
+  captchaB = Math.floor(Math.random()*9)+2;
+  document.getElementById('captchaQ').textContent = 'Captcha: '+captchaA+' × '+captchaB+' = ?';
+  document.getElementById('captchaAns').value='';
+}
+function submitForm(){
+  const ans = parseInt(document.getElementById('captchaAns').value);
+  if(ans !== captchaA*captchaB){ alert('Jawaban captcha salah. Coba lagi.'); return; }
+  alert('Slip gaji berhasil dikirim!');
+}
+genCaptcha();
+</script>

@@ -1,0 +1,113 @@
+📄 DESKRIPSI APLIKASI
+
+Buatkan sebuah Aplikasi Penggajian Karyawan Berbasis Web yang digunakan oleh admin untuk menginput dan mengelola data gaji karyawan.
+
+Aplikasi ini memiliki fungsi utama untuk:
+
+Menginput data karyawan
+Menghitung gaji secara otomatis
+Menampilkan hasil perhitungan
+Menyimpan data ke dalam database
+(Opsional) Mengunduh hasil dalam bentuk PDF
+🧠 ALUR SISTEM
+User (admin) membuka aplikasi web
+Sistem menampilkan halaman utama berisi form input
+User mengisi data:
+Nama Karyawan
+Gaji Pokok
+Lembur
+Pinjaman
+User menekan tombol simpan
+Sistem melakukan proses perhitungan:
+Total Penghasilan = Gaji Pokok + Lembur
+Total Potongan = Pinjaman
+Gaji Bersih = Total Penghasilan - Total Potongan
+Sistem menyimpan data ke database
+Sistem menampilkan data dalam bentuk tabel
+User dapat melihat hasil perhitungan
+(Opsional) User dapat mengunduh data dalam bentuk PDF
+⚙️ CARA KERJA SISTEM
+Sistem menggunakan konsep input → proses → output
+Input dilakukan melalui form HTML
+Data dikirim ke backend (controller)
+Controller melakukan perhitungan gaji
+Hasil disimpan ke database
+Data ditampilkan kembali ke user dalam bentuk tabel
+🗃️ STRUKTUR DATABASE
+
+Gunakan 1 tabel utama:
+
+Tabel: karyawans
+
+Field:
+
+id (primary key)
+nama (string)
+gaji_pokok (integer)
+lembur (integer)
+pinjaman (integer)
+total_penghasilan (integer)
+total_potongan (integer)
+gaji_bersih (integer)
+created_at (timestamp)
+updated_at (timestamp)
+🔄 FLOWCHART SISTEM
+Mulai
+↓
+Tampilkan Form Input
+↓
+User Input Data
+↓
+Klik Simpan
+↓
+Proses Perhitungan
+↓
+Simpan ke Database
+↓
+Ambil Data
+↓
+Tampilkan ke Table
+↓
+Selesai
+🎨 DESAIN UI (MODERN & CLEAN)
+
+Gunakan konsep dashboard sederhana modern:
+
+1. Navbar / Header
+Judul: "Aplikasi Penggajian"
+Warna clean (biru / abu-abu / putih)
+2. Form Input (Card)
+
+Berisi:
+
+Input Nama
+Input Gaji Pokok
+Input Lembur
+Input Pinjaman
+Tombol "Simpan"
+
+Design:
+
+Rounded
+Shadow halus
+Spacing rapi
+3. Tabel Data
+
+Menampilkan:
+
+No
+Nama
+Gaji Pokok
+Lembur
+Pinjaman
+Total Penghasilan
+Gaji Bersih
+
+Design:
+
+Table modern
+Hover effect
+Zebra row
+4. Button
+Simpan → warna biru / hijau
+Export PDF → warna merah / orange
